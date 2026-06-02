@@ -53,6 +53,23 @@ def calls_a_function(function):
 
 print(calls_a_function(called_function))
 
+def create_user(**kwargs):
+    print("\nUser information:")
+
+    for key, value in kwargs.items():
+        print(f"{key}:{value}")
+
+    
+#collect user input
+
+name = input("enter name:")
+age = input("enter age:")
+city = input("enter city: ")
+
+create_user(name = name, age = age, city=city)
+
+
+
 
 
 

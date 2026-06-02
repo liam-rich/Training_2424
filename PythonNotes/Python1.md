@@ -215,7 +215,7 @@ You can bind variables and functions to classes in Python. This allows you to ha
 # This needs to be added to the example when you get to abstract classes and methods
 from abc import ABC, abstractmethod
 
-# basic class syntax is the class keyword, ClassName:, init under method(add instance variables here), then associated functions
+# basic class syntax is the class keyword, ClassName:, init dunder method(add instance variables here), then associated functions
 class MyNewClass:
     # this sets up the constructor for the class. There can only be one
     # notice you can set default values for parameters by declaring them within the ()
@@ -230,7 +230,7 @@ class MyNewClass:
     def __str__(jeeves):
         return f"my name is {jeeves.name} and my age is {jeeves.age}"
 
-    # the __repr__ method should allow you to create a clone of the class. I could create a new variable and call this method to create a clone of the object
+    # the __repr__ method creates a string representation of the object
     def __repr__(self):
         return f"MyNewClass(self,{self.age},{self.name})"
 
