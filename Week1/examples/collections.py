@@ -96,3 +96,45 @@ print(this_is_fixed.count("are"))
 
 print(this_is_fixed.index("these"))
 
+def inside_the_dictionary():
+    return "nice"
+
+my_dictionary = {
+    "key": "value",
+    100: 1000,
+    "string key": 5,
+    10: "string value",
+    None: "this still works",
+    "can also do this": None,
+    "function": inside_the_dictionary(),
+    inside_the_dictionary(): "does this work"
+}
+
+print(my_dictionary[inside_the_dictionary()])
+
+my_dictionary["new key"] = 23 #this adds a new key value pair to the dictionary, same as dic.update({key:value})
+#my_dictionary.update({"new key":23})
+print(my_dictionary)
+
+print(my_dictionary.items()) # returns a list with the key value pairs stored as tuples
+print(type(my_dictionary.items()))
+
+print(list(my_dictionary.items()))
+print(type(list(my_dictionary.items())))
+
+#aside remove duplicates from a list
+l2= [1,3,3,5,5,2,1,0]
+l3=list(set(l2))
+print(l3)
+
+#dic.setdefault(key,[value]) retusn the value of the provided key, if it does not exist it creates it with the provided value
+
+my_dictionary.setdefault("key3","new value?")
+print(my_dictionary)
+
+#dic.values() returns all values dic.keys() returns all keys
+
+
+
+
+
