@@ -36,8 +36,8 @@ def add_count():
     return f"The count is now {count}"
 
 @app.get("/data") #route will like this: http://domain:port/data?query_param=value
-def query_database():
-    query = request.args["DB"]
+def query_database() -> dict:
+    query :str = request.args["DB"]
     if query == "":
         return data_set
     else:
