@@ -23,7 +23,7 @@ class Employee(ABC):
     def display_info(self):
         print(
             f"Name: {self.name}, "
-            f"Salary: {self._salary}, "
+            f"Salary: {self.calculate_pay()}, "
             f"ID: {self.__employee_id}"
         )
 
@@ -32,10 +32,33 @@ class SalariedEmployee(Employee):
 
     def calculate_pay(self):
         return self._salary
+    
+class HourlyEmployee(Employee):
+    def __init__(self, name, hourly_rate, hours_worked):
+        super().__init__(name, hours_worked * hourly_rate)
+        self.hours_worked = hours_worked
+        self.hourly_rate = hourly_rate
+    
+
+    def calculate_pay(self):
+        self._salary = self.hours_worked * self.hourly_rate
+        return self._salary
+
+    def display_info(self):
+        print(
+            f"Name: {self.name}, "
+            f"Rate: {self.hourly_rate}, "
+            f"Hours Worked: {self.hours_worked}, "
+            f"Total Pay: {self.calculate_pay()}, "
+            f"ID: {self.get_employee_id()}"
+        )
+      
+
 
     
 
 emp = SalariedEmployee("Abdul","65000")
+hourly_emp=HourlyEmployee("Will", 8, 40)
 
 print(emp.name)
 print(emp._salary) #Python doesn't enforce protected, but not to developers, don't touch this outside the class
@@ -49,6 +72,11 @@ print(emp._Employee__employee_id) #name mangling: python rewrites __employee_id 
 #or accidental overriding in subclasses
 
 emp.display_info()
+hourly_emp.calculate_pay()
+hourly_emp.display_info()
+
+print(emp.calculate_pay())
+print(hourly_emp.calculate_pay())
 
 
 
