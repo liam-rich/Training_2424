@@ -53,4 +53,15 @@ logger.info("info message")
 logger.error("error message")
 logger.critical("Critical Message")
 
+#logging Exceptions
+
+def divide (a,b):
+    try: 
+        return a/b
+    except ZeroDivisionError:
+        logger.error("Division by zero: %s/%s",a,b)
+        return None
+    
+divide(10,0)
+
 
