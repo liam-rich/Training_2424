@@ -4,6 +4,7 @@ class Car:
         self.odometer = 0
         self.time = 0
         print(__name__)
+        
 
     def say_state(self):
         print(f"I'm going {self.speed} mph!")
@@ -22,6 +23,7 @@ class Car:
         self.time += 1
 
 if __name__ == "__main__":
+    print(dir())
     my_car = Car()
     print("I'm a Car")
 
