@@ -15,9 +15,24 @@ logging.basicConfig(
     force=True #Reset any previos config
 
 )
-logger = logging.getLogger("customLogger")
-logger.debug("Detailed debug information")
-logger.warning("this is a warning")
-logger.info("info message")
-logger.error("error message")
-logger.critical("Critical Message")
+logging.debug("Detailed debug information")
+logging.warning("this is a warning")
+logging.info("info message")
+logging.error("error message")
+logging.critical("Critical Message")
+
+# Named loggers with handlers
+
+# Create a Named Logger
+logger = logging.getLogger("test_framework")
+logger.setLevel(logging.DEBUG)
+logger.handlers.clear() #Clean slate for demo
+
+#Console handler - INFO and above
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+console.setFormatter(logging.Formatter(
+    " %(levelname)-8s |%(message)s"
+))
+
+#File Handler
