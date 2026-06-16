@@ -19,6 +19,8 @@ public class Playground {
         c.work();
         c.play();
 
+
+
         //will have all of the states(fields) and behvaiors(methods) available in the Parent Class.
         //will have the implementations provided by the Child class;
         Parent pc = new Child();
@@ -27,6 +29,19 @@ public class Playground {
 
         //no play() since only fields and methods of Parent class available
         //pc.play();
+
+        Parent p0 = (Parent) c; //this os okay because the child variable 'c' has everything needed to make a Parent Object
+
+//        Child c0 = (Child) p; //this is not okay because the Parent variable 'p' does not have everything needed to make a Child Object
+
+        Child c1 = (Child) pc;
+
+        c1.work();
+        c1.play();
+        System.out.println(c1.jobtitle);
+
+
+
 
 
 
