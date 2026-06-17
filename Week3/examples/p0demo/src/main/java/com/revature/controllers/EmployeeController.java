@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.DAOs.EmployeeDAO;
 import com.revature.models.Employee;
 import io.javalin.http.Handler;
+import io.javalin.http.HttpStatus;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,7 @@ public class EmployeeController {
         ctx.json(employees);
 
         //we can set the status code with ctx.status()
-        ctx.status(200); //200 is the defualt "OK" message
+        ctx.status(HttpStatus.OK);; //200 is the defualt "OK" message
 
 
     });

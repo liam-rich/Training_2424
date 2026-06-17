@@ -1,6 +1,7 @@
 package com.revature;
 
 import com.revature.DAOs.EmployeeDAO;
+import com.revature.controllers.EmployeeController;
 import com.revature.models.Employee;
 import io.javalin.Javalin;
 
@@ -24,8 +25,13 @@ public class Launcher {
             System.out.println(e);
         }
 
-        var app = Javalin.create( config -> {
+        EmployeeController ec = new EmployeeController();
+
+        //Typical Javalin object creation syntax
+        Javalin.create( config -> {
             config.routes.get("hello",ctx -> ctx.result("Hello World"));
+            config.routes.get("/employees",ec.getEmployeesHandler);
+            config.routes.post("/employees",ec.insertEmployee);
 
         }).start(3000);
 
