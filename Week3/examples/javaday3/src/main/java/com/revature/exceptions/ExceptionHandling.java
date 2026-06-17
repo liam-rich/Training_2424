@@ -18,9 +18,16 @@ public class ExceptionHandling {
         try {
             int result = x/y;
             System.out.println(result);
-        } catch (ArithmeticException e){
+
+        } catch (ArithmeticException e) {
             System.out.println("Oops! Something went wrong!");
             e.printStackTrace();
+
+        } catch (RuntimeException r) {
+            System.out.println("run time exception");
+            r.printStackTrace();
+
+
         } finally {
             System.out.println( "In finally block");
             scan.close();
