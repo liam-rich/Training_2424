@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WritingAppending {
     static void writeAndCreate() throws IOException {
@@ -48,6 +49,32 @@ public class WritingAppending {
         List<String> entries = List.of("PASS LoginTest", "PASS SearchTest","FAIL CheckoutTest");
         Files.write(results, entries);
         System.out.println("Results list written: " +Files.readAllLines(results));
+
+    }
+
+    static void endToEndScenario() throws IOException {
+        Path input = Paths.get("data/scores.csv");
+        Path output = Paths.get("output/failures.txt");
+
+        //Read all Lines (skip the header)
+        List<String> failures = Files.readAllLines(input)
+                .stream()
+                .skip(1)  //skip "Name,Score" header
+                .filter(line -> {
+                    String [] parts = line.split(",");
+                    int score = Integer.parseInt(parts[1].trim());
+                    return score < 50;  //failing threshold
+                })
+                .toList();
+
+        //write the filtered report
+        Files.createDirectories(output.getParent());
+        Files.write(output, failures);
+
+        System.out.println("Failures Found: " + failures.size());
+        System.out.println("Report Saved: " + output.toAbsolutePath());
+        failures.forEach(f-> System.out.println(" >> " + f));
+
 
     }
 }
