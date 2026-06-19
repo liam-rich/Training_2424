@@ -20,6 +20,25 @@ public class dequeDemo {
         System.out.println("Went back from: " + currentPage);
         System.out.println("Current History: " + history);
 
+        ////////////////////////////
+
+        Deque<String> stack = new ArrayDeque<>();
+
+        //push item
+        stack.push("JAVA");
+        stack.push("SQL");
+        stack.push("Spring");
+
+        System.out.println(stack);
+
+        //peak top
+        System.out.println("Top: "+ stack.peek());
+
+        //pop top
+        System.out.println("Removed: "+stack.pop());
+
+        System.out.println(stack);
+
 
     }
 }
