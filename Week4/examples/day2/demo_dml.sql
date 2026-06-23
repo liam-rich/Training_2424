@@ -45,7 +45,7 @@ WHERE sku = 'MUG-01'
 
 -- UPDATE with join-like predicate via subquery (common pattern)
 UPDATE order_header
-SET status = 'PAID'
+SET status = 'CANCELLED'
 	WHERE order_id = (
 	SELECT order_id FROM order_header oh
 	JOIN customer c ON c.customer_id = oh.customer_id
@@ -53,7 +53,15 @@ SET status = 'PAID'
 	ORDER BY oh.order_id DESC
 	LIMIT 1
 	);
-	
+
+-- DELETE: dangerous without WHERE 
+DELETE FROM order_line
+WHERE order_id = (
+	SELECT order_id FROM order_header oh
+	JOIN customer c ON c.customer_id = oh.customer_id
+	WHERE c.email = 'ada@example.com'
+	AND oh.status='CANCELLED'
+);
 
 
 SELECT * FROM customer;

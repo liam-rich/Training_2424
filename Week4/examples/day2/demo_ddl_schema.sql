@@ -12,13 +12,12 @@ DROP TABLE IF EXISTS customer CASCADE;
 -- CUSTOMER: identity, uniqueness, domain check
 CREATE TABLE customer (
     customer_id   INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    email         VARCHAR(255) NOT NULL,
+    email         VARCHAR(255) NOT NULL UNIQUE,
     full_name     VARCHAR(200) NOT NULL,
     country_code  CHAR(2) NOT NULL DEFAULT 'US'
         CHECK (country_code ~ '^[A-Z]{2}$'),
     is_active     BOOLEAN NOT NULL DEFAULT TRUE,
-    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    CONSTRAINT uq_customer_email UNIQUE (email)
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 -- PRODUCT: SKU uniqueness, non-negative stock and price

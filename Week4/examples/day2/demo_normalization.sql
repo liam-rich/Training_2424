@@ -139,6 +139,7 @@ INSERT INTO tmp_order_lines_3nf VALUES
 SELECT * FROM tmp_customer_3nf;
 SELECT * FROM tmp_order_header_3nf;
 SELECT * FROM tmp_order_lines_3nf;
+SELECT * FROM tmp_product_2nf;
 
 
 SELECT
