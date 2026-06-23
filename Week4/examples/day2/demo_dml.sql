@@ -38,6 +38,10 @@ FROM recent_order, mug;
 
 -- UPDATE: always constrain - bump price for one SKU only
 UPDATE product
+SET unit_price = 13.00,
+	stock_qty = stock_qty-2
+WHERE sku = 'MUG-01'
+	AND stock_qty>=2;
 	
 
 
