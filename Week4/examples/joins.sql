@@ -86,4 +86,42 @@ WHERE email = 'join-b@example.com';
 
 ---------------------------------------------------------
 SELECT * FROM customer;
+SELECT * FROM product;
 SELECT * FROM order_header;
+SELECT * FROM order_line;
+
+-- INNER: Customers who have at least one order
+SELECT c.email, oh.order_id, oh.status
+FROM customer c
+INNER JOIN order_header oh ON oh.customer_id = c.customer_id
+ORDER BY c.email, oh.order_id;
+
+-- LEFT: All Customers, orders if any
+SELECT c.email, oh.order_id, oh.status
+FROM customer c
+LEFT JOIN order_header oh ON oh.customer_id = c.customer_id
+ORDER BY c.email, oh.order_id;
+
+--RIGHT: all orders, customer columns even if missing (with our FK, every order has a customer)
+SELECT c.email, oh.order_id, oh.status
+FROM customer c
+RIGHT JOIN order_header oh ON oh.customer_id = c.customer_id
+ORDER BY c.email, oh.order_id;
+
+--FULL OUTER: customers without orders AND (conceptually) orders without customers
+-- with FK enforced, unmatched orders won't exist
+SELECT c.email, oh.order_id, oh.status
+FROM customer c
+FULL OUTER JOIN order_header oh ON oh.customer_id = c.customer_id
+ORDER BY c.email NULLS LAST, oh.order_id NULLS LAST;
+
+-- CROSS JOIN: our case small cardinality - customers x products
+SELECT c.email, p.sku
+FROM customer c
+CROSS JOIN product p
+ORDER BY c.email, p.sku;
+
+
+
+
+
