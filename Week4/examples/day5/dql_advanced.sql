@@ -49,7 +49,20 @@ GROUP BY c.customer_id
 HAVING SUM(ol.qty * ol.unit_price) >500
 ORDER BY REVENUE DESC;
 
--- 
+-- subquery in FROM: per-order line counts (foundation for reporting)
+SELECT oh.order_id,
+	c.email,
+	lc.line_count,
+	SUM(ol.qty * ol.unit_price) AS order_revenue
+FROM order_header oh
+JOIN customer c ON c.customer_id = oh.customer_id
+JOIN order_line ol ON ol.order_id = oh.order_id
+JOIN( SELECT order_id, COUNT(*) AS line_count
+	FROM order_line
+	GROUP BY order_id
+	) lc ON lc.order_id = oh.order_id
+GROUP BY oh.order_id, c.email, lc.line_count;
+
 
 
 
